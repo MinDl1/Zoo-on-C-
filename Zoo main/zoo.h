@@ -55,13 +55,6 @@ public:
             this->how=obj.how;
             next=0;
     }
-//    Change construstors
-    zoo(string name,int how,zoo &obj){
-        
-    }
-    zoo(double price,zoo &obj){
-        
-    }
 //    Destructor
     ~zoo(){
         cout<<"Object deleted"<<endl;
