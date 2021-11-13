@@ -52,18 +52,21 @@ int main(int argc, const char * argv[]) {
     zoo *pnt=new zoo(animal,sex,name,price,how);
     zoo *p;
     p=pnt;
+    
+    cout<<"\nEnter command:\nh - help\ncrv - create_void\ncr - create\nsh - show\nsa - search_animal\nsn - search_number\nco - copy\nch - change\ndoc - document\ndel - delete\nexit - exit"<<endl;
+    
 //    An endless cycle of creating objects and action with them
     while(ex!="exit"){
-        cout<<"Enter command: create_void,create,show,search,copy,change,document,delete"<<endl;
         cin>>ex;
         cout<<endl;
 //        Creating empty object
-        if(ex=="create_void"){
+        if(ex=="create_void"||ex=="crv"){
             p=new zoo(*p);
+            pnt->numb();
             cout<<"Empty object created\n\n";
         }
 //        Creating object with values
-        else if(ex=="create"){
+        else if(ex=="create"||ex=="cr"){
             cout<<"Creating a new object:"<<endl;
             cout<<"Kind of animal: ";
             cin>>animal;
@@ -95,11 +98,12 @@ int main(int argc, const char * argv[]) {
             }
             cout<<endl;
             p=new zoo(animal,sex,name,price,how,*p);
+            pnt->numb();
         }
 //        Shows all objects
-        else if(ex=="show")pnt->show();
-//        Shows one object that you want
-        else if(ex=="search"){
+        else if(ex=="show"||ex=="sh")pnt->show();
+//        Shows one object that you search with kind of animal
+        else if(ex=="search_animal"||ex=="sa"){
             string anima;
             cout<<"Enter kind of animal: ";
             cin>>anima;
@@ -111,8 +115,21 @@ int main(int argc, const char * argv[]) {
                 cout<<endl<<"No such object"<<endl<<endl;
             }
         }
+//          Shows one object that you search with number
+        else if(ex=="search_number"||ex=="sn"){
+            int number;
+            cout<<"Enter number of object: ";
+            cin>>number;
+            if(pnt->search_change(number)){
+                cout<<endl;
+                pnt->search(number);
+            }
+            else{
+                cout<<endl<<"No such object"<<endl<<endl;
+            }
+        }
 //        Copies another object
-        else if(ex=="copy"){
+        else if(ex=="copy"||ex=="co"){
             string anima;
             cout<<"Enter kind of animal: ";
             cin>>anima;
@@ -120,13 +137,14 @@ int main(int argc, const char * argv[]) {
                 cout<<endl;
                 pnt->copy(anima,animal,sex,name,price,how,*p);
                 p = new zoo(animal,sex,name,price,how,*p);
+                pnt->numb();
             }
             else{
                 cout<<endl<<"No such object"<<endl<<endl;
             }
         }
 //        Copies values from document
-        else if(ex=="document"){
+        else if(ex=="document"||ex=="doc"){
             int ext=0;
             string file;
             cout<<"File name: ";
@@ -156,6 +174,7 @@ int main(int argc, const char * argv[]) {
                     how=stoi(a6[4]);
                     p=new zoo(animal,sex,name,price,how,*p);
                 }
+                pnt->numb();
                 fin.close();
                 cout<<endl;
             }
@@ -164,17 +183,18 @@ int main(int argc, const char * argv[]) {
             }
         }
 //        Delete object that you want
-        else if(ex=="delete"){
+        else if(ex=="delete"||ex=="del"){
             cout<<"Kind of animal for deleting: ";
             cin>>animal;
             if(pnt->search_change(animal)){
                 pnt->search_delete(animal,pnt);
+                pnt->numb();
             }
             else{
                 cout<<endl<<"No such object"<<endl<<endl;
             }
         }
-        else if(ex=="change"){
+        else if(ex=="change"||ex=="ch"){
             string what;
             cout<<"What do you want to change?\n1)All\n2)Sexes,Names,How\n3)Price"<<endl;
             cin>>what;
@@ -270,8 +290,11 @@ int main(int argc, const char * argv[]) {
         }
 //        for "else"
         else if(ex=="exit");
+        else if(ex=="h"||ex=="help"){
+            cout<<"\nEnter command:\nh - help\ncrv - create_void\ncr - create\nsh - show\nsa - search_animal\nsn - search_number\nco - copy\nch - change\ndoc - document\ndel - delete\nexit - exit"<<endl;
+        }
         else{
-            cout<<"Command entered incorrectly"<<endl<<endl;
+            cout<<"Command entered incorrectly, 'h' or 'help' for help"<<endl<<endl;
         }
     }
     string Yes_No;
