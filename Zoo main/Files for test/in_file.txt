@@ -1,0 +1,13 @@
+Wolf M Alfa 4.9 1
+Monkey F Boba.Roba 5.7 2
+Nothing
+N
+Nothing
+0
+0
+
+Cat
+M
+Beta.Gamma.Yaric.
+5.3
+3
