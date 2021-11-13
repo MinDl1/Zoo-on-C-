@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
         p=pnt;
     //    An endless cycle of creating objects and action with them
         while(ex!="exit"){
-            cout<<"Enter command: create_void,create,show,search,copy,document,delete,change"<<endl;
+            cout<<"Enter command: create_void,create,show,search,copy,change,document,delete"<<endl;
             cin>>ex;
             cout<<endl;
     //        Creating empty object
@@ -64,20 +64,30 @@ int main(int argc, const char * argv[]) {
             else if(ex=="show")pnt->show();
     //        Shows one object that you want
             else if(ex=="search"){
-                string a;
+                string anima;
                 cout<<"Enter kind of animal: ";
-                cin>>a;
-                cout<<endl;
-                pnt->search(a);
+                cin>>anima;
+                if(pnt->search_change(anima)){
+                    cout<<endl;
+                    pnt->search(anima);
+                }
+                else{
+                    cout<<endl<<"No such object"<<endl<<endl;
+                }
             }
     //        Copies another object
             else if(ex=="copy"){
-                string ext;
+                string anima;
                 cout<<"Enter kind of animal: ";
-                cin>>ext;
-                cout<<endl;
-                pnt->copy(ext,animal,sex,name,price,how,*p);
-                p = new zoo(animal,sex,name,price,how,*p);
+                cin>>anima;
+                if(pnt->search_change(anima)){
+                    cout<<endl;
+                    pnt->copy(anima,animal,sex,name,price,how,*p);
+                    p = new zoo(animal,sex,name,price,how,*p);
+                }
+                else{
+                    cout<<endl<<"No such object"<<endl<<endl;
+                }
             }
     //        Copies values from document
             else if(ex=="document"){
@@ -92,7 +102,7 @@ int main(int argc, const char * argv[]) {
                     if(!fin.is_open()){
                         throw "Error: file won't open of not found";
                     }
-                    cout<<"How many objects are in the file?: ";
+                    cout<<"How many lines are in the file?: ";
                     cin>>ext;
                     string a6[6];
                     for(int i=0;i<ext;i++){
@@ -121,7 +131,12 @@ int main(int argc, const char * argv[]) {
             else if(ex=="delete"){
                 cout<<"Kind of animal for deleting: ";
                 cin>>animal;
-                pnt->search_delete(animal,pnt);
+                if(pnt->search_change(animal)){
+                    pnt->search_delete(animal,pnt);
+                }
+                else{
+                    cout<<endl<<"No such object"<<endl<<endl;
+                }
             }
             else if(ex=="change"){
                 string what;
@@ -131,37 +146,52 @@ int main(int argc, const char * argv[]) {
                     string anima;
                     cout<<"Old kind of animal: ";
                     cin>>anima;
-                    cout<<"New kind of animal: ";
-                    cin>>animal;
-                    cout<<"New sexes: ";
-                    cin>>sex;
-                    cout<<"New Names: ";
-                    cin>>name;
-                    cout<<"New price: ";
-                    cin>>price;
-                    cout<<"New How: ";
-                    cin>>how;
-                    cout<<endl;
-                    pnt->change(anima,animal,sex,name,price,how,*p);
+                    if(pnt->search_change(anima)){
+                        cout<<"New kind of animal: ";
+                        cin>>animal;
+                        cout<<"New sexes: ";
+                        cin>>sex;
+                        cout<<"New Names: ";
+                        cin>>name;
+                        cout<<"New price: ";
+                        cin>>price;
+                        cout<<"New How: ";
+                        cin>>how;
+                        cout<<endl;
+                        pnt->change(anima,animal,sex,name,price,how,*p);
+                    }
+                    else{
+                        cout<<endl<<"No such object"<<endl<<endl;
+                    }
                 }
                 else if(what=="2"||what=="2)"||what=="2)Sexes,Names,How"||what=="Sexes,Names,How"||what=="sexes,names,how"){
                     string nam;
                     cout<<"Old names: ";
                     cin>>nam;
-                    cout<<"New sexes: ";
-                    cin>>sex;
-                    cout<<"New names: ";
-                    cin>>name;
-                    cout<<"New how: ";
-                    cin>>how;
-                    pnt->change(nam,sex,name,how,*p);
+                    if(pnt->search_changes(nam)){
+                        cout<<"New sexes: ";
+                        cin>>sex;
+                        cout<<"New names: ";
+                        cin>>name;
+                        cout<<"New how: ";
+                        cin>>how;
+                        pnt->change(nam,sex,name,how,*p);
+                    }
+                    else{
+                        cout<<endl<<"No such object"<<endl<<endl;
+                    }
                 }
                 else if(what=="3"||what=="3)"||what=="3)Price"||what=="3)price"||what=="Price"||what=="price"){
                     cout<<"Kind animnal: ";
                     cin>>animal;
-                    cout<<"New Price: ";
-                    cin>>price;
-                    pnt->change(animal,price,*p);
+                    if(pnt->search_change(animal)){
+                        cout<<"New Price: ";
+                        cin>>price;
+                        pnt->change(animal,price,*p);
+                    }
+                    else{
+                        cout<<endl<<"No such object"<<endl<<endl;
+                    }
                 }
                 else{
                     cout<<"Command entered incorectly"<<endl<<endl;
