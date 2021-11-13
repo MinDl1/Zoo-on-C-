@@ -107,7 +107,9 @@ public:
                 cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
             }
             else{
-                next->search(animal);
+                if(this->animal==animal){
+                    cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+                }
             }
         }
     }
