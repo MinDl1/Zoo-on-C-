@@ -9,6 +9,7 @@ class zoo{
     string name;
     double price;
     int how;
+    double price_how;
     zoo *next;
 public:
 //    Default constructors 1) Common 2) for chain of objects
@@ -18,6 +19,7 @@ public:
         name="Nothing";
         price=0;
         how=0;
+        price_how=0;
     }
     zoo(zoo &obj){
         obj.next=this;
@@ -26,6 +28,7 @@ public:
         name="Nothing";
         price=0;
         how=0;
+        price_how=0;
     }
 //    Value constructors 1) constructor for creating a regular object 2) constructor for creating a chain dynamic objects
     zoo(string animal,string sex,string name,double price,int how){
@@ -34,6 +37,7 @@ public:
         this->name=name;
         this->price=price;
         this->how=how;
+        this->price_how=price*how;
     }
     zoo(string animal,string sex,string name,double price,int how,zoo &obj){
         obj.next=this;
@@ -42,6 +46,7 @@ public:
         this->name=name;
         this->price=price;
         this->how=how;
+        this->price_how=price*how;
     }
 //    Copy constructor which I'm not using
     zoo(string anim,zoo &obj){
@@ -51,6 +56,7 @@ public:
         this->name=obj.name;
         this->price=obj.price;
         this->how=obj.how;
+        this->price_how=obj.price_how;
     }
 //    Destructor
     ~zoo(){
@@ -58,7 +64,7 @@ public:
     }
 //    Shows all objects
     void show(){
-        cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+        cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         if(next){
             next->show();
         }
@@ -66,11 +72,12 @@ public:
 //    Searches and chaneges
     void change(string nam,string sex,string name,int how,zoo &obj){
         if(this->name==nam){
-            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<endl;
+            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
             this->sex=sex;
             this->name=name;
             this->how=how;
-            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<endl;
+            this->price_how=price*how;
+            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(nam,sex,name,how,obj);
@@ -78,13 +85,14 @@ public:
     }
     void change(string anima,string animal,string sex,string name,double price,int how,zoo &obj){
         if(this->animal==anima){
-            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<endl;
+            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
             this->animal=animal;
             this->sex=sex;
             this->name=name;
             this->price=price;
             this->how=how;
-            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<endl;
+            this->price_how=price*how;
+            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(anima,animal,sex,name,price,how,obj);
@@ -92,9 +100,10 @@ public:
     }
     void change(string animal,double price,zoo &obj){
         if(this->animal==animal){
-            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<endl;
+            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
             this->price=price;
-            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<endl;
+            this->price_how=price*how;
+            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(animal,price,obj);
@@ -104,24 +113,27 @@ public:
     void search(string animal){
         if(next){
             if(this->animal==animal){
-                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
             }
             else{
-                if(this->animal==animal){
-                    cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
-                }
+                next->search(animal);
+            }
+        }
+        else{
+            if(this->animal==animal){
+                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
             }
         }
     }
 //      Deleting unnecessary object
-    void search_delete(string anim, zoo* obj){
-        if(next->animal==anim){
-            cout<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<endl;
+    void search_delete(string animal, zoo* obj){
+        if(next->animal==animal){
+            cout<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
             delete this->next;
-            next=next->next;
+            this->next=next->next;
         }
         else{
-            next->search_delete(anim, obj);
+            next->search_delete(animal, obj);
         }
     }
 //      Deleting all objects
@@ -139,7 +151,7 @@ public:
             name=this->name;
             price=this->price;
             how=this->how;
-            cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+            cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->copy(anim,animal,sex,name,price,how,obj);
@@ -147,12 +159,12 @@ public:
     }
 //    Write all objects in the file
     void write(ofstream &obj){
-        obj<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+        obj<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         if(next){
             next->write(obj);
         }
     }
-//    For method change
+//    For method change and other methods check
     bool search_change(string animal){
         if(next){
             if(this->animal==animal){
