@@ -184,7 +184,7 @@ public:
     }
 //    Write all objects in the file
     void write(ofstream &obj){
-        obj<<number<<")"<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+        obj<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         if(next){
             next->write(obj);
         }
