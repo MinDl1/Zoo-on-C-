@@ -4,6 +4,7 @@
 using namespace std;
 
 class zoo{
+    int number;
     string animal;
     string sex;
     string name;
@@ -32,6 +33,7 @@ public:
     }
 //    Value constructors 1) constructor for creating a regular object 2) constructor for creating a chain dynamic objects
     zoo(string animal,string sex,string name,double price,int how){
+        this->number=1;
         this->animal=animal;
         this->sex=sex;
         this->name=name;
@@ -41,6 +43,7 @@ public:
     }
     zoo(string animal,string sex,string name,double price,int how,zoo &obj){
         obj.next=this;
+        this->number=1;
         this->animal=animal;
         this->sex=sex;
         this->name=name;
@@ -64,20 +67,27 @@ public:
     }
 //    Shows all objects
     void show(){
-        cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+        cout<<number<<")"<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         if(next){
             next->show();
+        }
+    }
+//    gives the number to object
+    void numb(){
+        if(next){
+            next->number=this->number+1;
+            next->numb();
         }
     }
 //    Searches and chaneges
     void change(string nam,string sex,string name,int how,zoo &obj){
         if(this->name==nam){
-            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
             this->sex=sex;
             this->name=name;
             this->how=how;
             this->price_how=price*how;
-            cout<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<animal<<endl<<this->sex<<endl<<this->name<<endl<<price<<endl<<this->how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(nam,sex,name,how,obj);
@@ -85,14 +95,14 @@ public:
     }
     void change(string anima,string animal,string sex,string name,double price,int how,zoo &obj){
         if(this->animal==anima){
-            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
             this->animal=animal;
             this->sex=sex;
             this->name=name;
             this->price=price;
             this->how=how;
             this->price_how=price*how;
-            cout<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<this->animal<<endl<<this->sex<<endl<<this->name<<endl<<this->price<<endl<<this->how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(anima,animal,sex,name,price,how,obj);
@@ -100,10 +110,10 @@ public:
     }
     void change(string animal,double price,zoo &obj){
         if(this->animal==animal){
-            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
             this->price=price;
             this->price_how=price*how;
-            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<this->price<<endl<<how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->change(animal,price,obj);
@@ -113,7 +123,7 @@ public:
     void search(string animal){
         if(next){
             if(this->animal==animal){
-                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+                cout<<this->number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
             }
             else{
                 next->search(animal);
@@ -121,14 +131,29 @@ public:
         }
         else{
             if(this->animal==animal){
-                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+                cout<<this->number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+            }
+        }
+    }
+    void search(int number){
+        if(next){
+            if(this->number==number){
+                cout<<this->number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+            }
+            else{
+                next->search(number);
+            }
+        }
+        else{
+            if(this->number==number){
+                cout<<this->number<<")"<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
             }
         }
     }
 //      Deleting unnecessary object
     void search_delete(string animal, zoo* obj){
         if(next->animal==animal){
-            cout<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+            cout<<this->number<<")"<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
             delete this->next;
             this->next=next->next;
         }
@@ -151,7 +176,7 @@ public:
             name=this->name;
             price=this->price;
             how=this->how;
-            cout<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+            cout<<number<<")"<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         }
         else{
             next->copy(anim,animal,sex,name,price,how,obj);
@@ -159,7 +184,7 @@ public:
     }
 //    Write all objects in the file
     void write(ofstream &obj){
-        obj<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+        obj<<number<<")"<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
         if(next){
             next->write(obj);
         }
@@ -176,6 +201,24 @@ public:
         }
         else{
             if(this->animal==animal){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+    bool search_change(int number){
+        if(next){
+            if(this->number==number){
+                return true;
+            }
+            else{
+                return next->search_change(number);
+            }
+        }
+        else{
+            if(this->number==number){
                 return true;
             }
             else{
