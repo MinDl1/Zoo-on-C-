@@ -161,7 +161,12 @@ public:
             }
         }
         else{
-            return false;
+            if(this->animal==animal){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
     bool search_changes(string name){
@@ -174,7 +179,12 @@ public:
             }
         }
         else{
-            return false;
+            if(this->name==name){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 };
