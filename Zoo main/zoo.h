@@ -26,7 +26,6 @@ public:
         name="Nothing";
         price=0;
         how=0;
-        next=0;
     }
 //    Value constructors 1) constructor for creating a regular object 2) constructor for creating a chain dynamic objects
     zoo(string animal,string sex,string name,double price,int how){
@@ -43,17 +42,15 @@ public:
         this->name=name;
         this->price=price;
         this->how=how;
-        next=0;
     }
 //    Copy constructor which I'm not using
     zoo(string anim,zoo &obj){
-            obj.next=this;
-            this->animal=obj.animal;
-            this->sex=obj.sex;
-            this->name=obj.name;
-            this->price=obj.price;
-            this->how=obj.how;
-            next=0;
+        obj.next=this;
+        this->animal=obj.animal;
+        this->sex=obj.sex;
+        this->name=obj.name;
+        this->price=obj.price;
+        this->how=obj.how;
     }
 //    Destructor
     ~zoo(){
