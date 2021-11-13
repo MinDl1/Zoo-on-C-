@@ -176,7 +176,7 @@ public:
     }
     bool search_changes(string name){
         if(next){
-            if(this->name==animal){
+            if(this->name==name){
                 return true;
             }
             else{
