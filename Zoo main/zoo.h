@@ -112,11 +112,13 @@ public:
     }
 //    Searches and displays the desired result
     void search(string animal){
-        if(this->animal==animal){
-            cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
-        }
-        else{
-            next->search(animal);
+        if(next){
+            if(this->animal==animal){
+                cout<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
+            }
+            else{
+                next->search(animal);
+            }
         }
     }
 //      Deleting unnecessary object
@@ -156,6 +158,33 @@ public:
         obj<<animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<endl;
         if(next){
             next->write(obj);
+        }
+    }
+//    For method change
+    bool search_change(string animal){
+        if(next){
+            if(this->animal==animal){
+                return true;
+            }
+            else{
+                return next->search_change(animal);
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    bool search_changes(string name){
+        if(next){
+            if(this->name==animal){
+                return true;
+            }
+            else{
+                return next->search_change(name);
+            }
+        }
+        else{
+            return false;
         }
     }
 };
