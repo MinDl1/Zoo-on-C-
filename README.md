@@ -1,17 +1,4 @@
-# Zoo-on-C-
+# Zoo on C++
 
 Zoo on C++ can do:
-1)create objects with values:
-  a)Kind of animal
-  b)Sexes of this animals
-  c)Names of this animals
-  d)Price of this animals
-  e)Number of animals
-2)Create void objects
-3)Show this objects
-4)Search object and show
-5)Copy objects
-6)Change objects
-7)Take informnation from file
-8)Write information in file
-9)Delete objects
+cout<<"\nEnter command:\nh - help - display this message\ncrv - create_void - create void obj\ncr - create - create new object with your input values\nsh - show - show all objects\nsa - search_animal - search with kind of animal\nsn - search_number - search with number\nca - copy_animal - copy with animal search\ncn - copy_number - copy with number search\nch - change - change some values\ndoc - document - take data from document\ndela - delete_animal - delete with kind of animal search\ndeln - delete_number - delete with number search\nexit - exit"<<endl;
