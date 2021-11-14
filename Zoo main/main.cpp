@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
     zoo *p;
     p=pnt;
     
-    cout<<"\nEnter command:\nh - help\ncrv - create_void\ncr - create\nsh - show\nsa - search_animal\nsn - search_number\nco - copy\nch - change\ndoc - document\ndel - delete\nexit - exit"<<endl;
+    cout<<"\nEnter command:\nh - help - display this message\ncrv - create_void - create void obj\ncr - create - create new object with your input values\nsh - show - show all objects\nsa - search_animal - search with kind of animal\nsn - search_number - search with number\nca - copy_animal - copy with animal search\ncn - copy_number - copy with number search\nch - change - change some values\ndoc - document - take data from document\ndela - delete_animal - delete with kind of animal search\ndeln - delete_number - delete with number search\nexit - exit"<<endl;
     
 //    An endless cycle of creating objects and action with them
     while(ex!="exit"){
@@ -99,6 +99,7 @@ int main(int argc, const char * argv[]) {
             cout<<endl;
             p=new zoo(animal,sex,name,price,how,*p);
             pnt->numb();
+            cout<<"Object was created"<<endl<<endl;
         }
 //        Shows all objects
         else if(ex=="show"||ex=="sh")pnt->show();
@@ -118,8 +119,17 @@ int main(int argc, const char * argv[]) {
 //          Shows one object that you search with number
         else if(ex=="search_number"||ex=="sn"){
             int number;
-            cout<<"Enter number of object: ";
-            cin>>number;
+            while(true){
+                cout<<"Enter number of object: ";
+                if(cin>>number){
+                    break;
+                }
+                else{
+                    cout<<"Wrong input"<<endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                }
+            }
             if(pnt->search_change(number)){
                 cout<<endl;
                 pnt->search(number);
@@ -129,13 +139,36 @@ int main(int argc, const char * argv[]) {
             }
         }
 //        Copies another object
-        else if(ex=="copy"||ex=="co"){
+        else if(ex=="copy_animal"||ex=="ca"){
             string anima;
             cout<<"Enter kind of animal: ";
             cin>>anima;
             if(pnt->search_change(anima)){
                 cout<<endl;
                 pnt->copy(anima,animal,sex,name,price,how,*p);
+                p = new zoo(animal,sex,name,price,how,*p);
+                pnt->numb();
+            }
+            else{
+                cout<<endl<<"No such object"<<endl<<endl;
+            }
+        }
+        else if(ex=="copy_number"||ex=="cn"){
+            int number;
+            while(true){
+                cout<<"Enter number of object: ";
+                if(cin>>number){
+                    break;
+                }
+                else{
+                    cout<<"Wrong input"<<endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                }
+            }
+            if(pnt->search_change(number)){
+                cout<<endl;
+                pnt->copy(number,animal,sex,name,price,how,*p);
                 p = new zoo(animal,sex,name,price,how,*p);
                 pnt->numb();
             }
@@ -161,6 +194,7 @@ int main(int argc, const char * argv[]) {
                 string a6[6];
                 for(int i=0;i<ext;i++){
                     cout<<"Frist line: ";
+                    fin>>buff;
                     for(int j=0;j<6;j++){
                         fin>>buff;
                         a6[j]=buff;
@@ -183,11 +217,32 @@ int main(int argc, const char * argv[]) {
             }
         }
 //        Delete object that you want
-        else if(ex=="delete"||ex=="del"){
+        else if(ex=="delete_animal"||ex=="dela"){
             cout<<"Kind of animal for deleting: ";
             cin>>animal;
             if(pnt->search_change(animal)){
                 pnt->search_delete(animal,pnt);
+                pnt->numb();
+            }
+            else{
+                cout<<endl<<"No such object"<<endl<<endl;
+            }
+        }
+        else if(ex=="delete_number"||ex=="deln"){
+            int number;
+            while(true){
+                cout<<"Enter number of object: ";
+                if(cin>>number){
+                    break;
+                }
+                else{
+                    cout<<"Wrong input"<<endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                }
+            }
+            if(pnt->search_change(number)){
+                pnt->search_delete(number,pnt);
                 pnt->numb();
             }
             else{
@@ -199,10 +254,19 @@ int main(int argc, const char * argv[]) {
             cout<<"What do you want to change?\n1)All\n2)Sexes,Names,How\n3)Price"<<endl;
             cin>>what;
             if(what=="1"||what=="1)"||what=="all"||what=="All"||what=="ALL"||what=="1)All"||what=="1)all"){
-                string anima;
-                cout<<"Old kind of animal: ";
-                cin>>anima;
-                if(pnt->search_change(anima)){
+                int number;
+                while(true){
+                    cout<<"Enter number of object: ";
+                    if(cin>>number){
+                        break;
+                    }
+                    else{
+                        cout<<"Wrong input"<<endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    }
+                }
+                if(pnt->search_change(number)){
                     cout<<"Kind of animal: ";
                     cin>>animal;
                     while(true){
@@ -231,17 +295,26 @@ int main(int argc, const char * argv[]) {
                             cin.ignore(numeric_limits<streamsize>::max(),'\n');
                         }
                     }
-                    pnt->change(anima,animal,sex,name,price,how,*p);
+                    pnt->change(number,animal,sex,name,price,how,*p);
                 }
                 else{
                     cout<<endl<<"No such object"<<endl<<endl;
                 }
             }
             else if(what=="2"||what=="2)"||what=="2)Sexes,Names,How"||what=="Sexes,Names,How"||what=="sexes,names,how"){
-                string nam;
-                cout<<"Old names: ";
-                cin>>nam;
-                if(pnt->search_changes(nam)){
+                int number;
+                while(true){
+                    cout<<"Enter number of object: ";
+                    if(cin>>number){
+                        break;
+                    }
+                    else{
+                        cout<<"Wrong input"<<endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    }
+                }
+                if(pnt->search_changes(number)){
                     cout<<"New sexes: ";
                     cin>>sex;
                     cout<<"New names: ";
@@ -257,16 +330,26 @@ int main(int argc, const char * argv[]) {
                             cin.ignore(numeric_limits<streamsize>::max(),'\n');
                         }
                     }
-                    pnt->change(nam,sex,name,how,*p);
+                    pnt->change(number,sex,name,how,*p);
                 }
                 else{
                     cout<<endl<<"No such object"<<endl<<endl;
                 }
             }
             else if(what=="3"||what=="3)"||what=="3)Price"||what=="3)price"||what=="Price"||what=="price"){
-                cout<<"Kind animnal: ";
-                cin>>animal;
-                if(pnt->search_change(animal)){
+                int number;
+                while(true){
+                    cout<<"Enter number of object: ";
+                    if(cin>>number){
+                        break;
+                    }
+                    else{
+                        cout<<"Wrong input"<<endl;
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    }
+                }
+                if(pnt->search_change(number)){
                     while(true){
                         cout<<"Price: ";
                         if(cin>>price){
@@ -278,7 +361,7 @@ int main(int argc, const char * argv[]) {
                             cin.ignore(numeric_limits<streamsize>::max(),'\n');
                         }
                     }
-                    pnt->change(animal,price,*p);
+                    pnt->change(number,price,*p);
                 }
                 else{
                     cout<<endl<<"No such object"<<endl<<endl;
@@ -291,7 +374,7 @@ int main(int argc, const char * argv[]) {
 //        for "else"
         else if(ex=="exit");
         else if(ex=="h"||ex=="help"){
-            cout<<"\nEnter command:\nh - help\ncrv - create_void\ncr - create\nsh - show\nsa - search_animal\nsn - search_number\nco - copy\nch - change\ndoc - document\ndel - delete\nexit - exit"<<endl;
+            cout<<"\nEnter command:\nh - help - display this message\ncrv - create_void - create void obj\ncr - create - create new object with your input values\nsh - show - show all objects\nsa - search_animal - search with kind of animal\nsn - search_number - search with number\nca - copy_animal - copy with animal search\ncn - copy_number - copy with number search\nch - change - change some values\ndoc - document - take data from document\ndela - delete_animal - delete with kind of animal search\ndeln - delete_number - delete with number search\nexit - exit"<<endl;
         }
         else{
             cout<<"Command entered incorrectly, 'h' or 'help' for help"<<endl<<endl;
