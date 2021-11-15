@@ -196,7 +196,7 @@ int main(int argc, const char * argv[]) {
                 if(!fin.is_open()){
                     throw "Error: file won't open of not found";
                 }
-                cout<<"How many lines are in the file?: ";
+                cout<<"How many objects are in the file?: ";
                 cin>>ext;
                 string a6[6];
                 for(int i=0;i<ext;i++){
