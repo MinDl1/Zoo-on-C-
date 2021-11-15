@@ -158,23 +158,47 @@ public:
     }
 //      Deleting unnecessary object
     void search_delete(string animal, zoo* obj){
-        if(next->animal==animal){
-            cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
-            delete this->next;
-            this->next=next->next;
+        if(next){
+            if(next->animal==animal){
+                cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+                delete this->next;
+                this->next=next->next;
+            }
+            else{
+                next->search_delete(animal, obj);
+            }
         }
         else{
-            next->search_delete(animal, obj);
+            if(next->animal==animal){
+                cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+                delete this->next;
+                this->next=next->next;
+            }
+            else{
+                cout<<"No such object"<<endl<<endl;
+            }
         }
     }
     void search_delete(int number, zoo* obj){
-        if(next->number==number){
-            cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
-            delete this->next;
-            this->next=next->next;
+        if(next){
+            if(next->number==number){
+                cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+                delete this->next;
+                this->next=next->next;
+            }
+            else{
+                next->search_delete(number, obj);
+            }
         }
         else{
-            next->search_delete(number, obj);
+            if(next->number==number){
+                cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+                delete this->next;
+                this->next=next->next;
+            }
+            else{
+                cout<<"No such object"<<endl<<endl;
+            }
         }
     }
 //      Deleting all objects
