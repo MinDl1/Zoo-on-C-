@@ -153,7 +153,7 @@ public:
 //      Deleting unnecessary object
     void search_delete(string animal, zoo* obj){
         if(next->animal==animal){
-            cout<<this->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+            cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
             delete this->next;
             this->next=next->next;
         }
@@ -163,7 +163,7 @@ public:
     }
     void search_delete(int number, zoo* obj){
         if(next->number==number){
-            cout<<this->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
+            cout<<next->number<<") "<<next->animal<<endl<<next->sex<<endl<<next->name<<endl<<next->price<<endl<<next->how<<endl<<next->price_how<<endl<<endl;
             delete this->next;
             this->next=next->next;
         }
