@@ -133,6 +133,9 @@ public:
             if(this->animal==animal){
                 cout<<this->number<<") "<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
             }
+            else{
+                cout<<"No such object"<<endl<<endl;
+            }
         }
     }
     void search(int number){
@@ -147,6 +150,9 @@ public:
         else{
             if(this->number==number){
                 cout<<this->number<<") "<<this->animal<<endl<<sex<<endl<<name<<endl<<price<<endl<<how<<endl<<price_how<<endl<<endl;
+            }
+            else{
+                cout<<"No such object"<<endl<<endl;
             }
         }
     }
