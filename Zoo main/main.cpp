@@ -217,13 +217,8 @@ int main(int argc, const char * argv[]) {
         else if(ex=="delete_animal"||ex=="dela"){
             cout<<"Kind of animal for deleting: ";
             cin>>animal;
-            if(pnt->search_change(animal)){
-                pnt->search_delete(animal,pnt);
-                pnt->numb();
-            }
-            else{
-                cout<<endl<<"No such object"<<endl<<endl;
-            }
+            pnt->search_delete(animal,pnt);
+            pnt->numb();
         }
         else if(ex=="delete_number"||ex=="deln"){
             int number;
@@ -238,13 +233,8 @@ int main(int argc, const char * argv[]) {
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 }
             }
-            if(pnt->search_change(number)){
-                pnt->search_delete(number,pnt);
-                pnt->numb();
-            }
-            else{
-                cout<<endl<<"No such object"<<endl<<endl;
-            }
+            pnt->search_delete(number,pnt);
+            pnt->numb();
         }
         else if(ex=="change"||ex=="ch"){
             string what;
