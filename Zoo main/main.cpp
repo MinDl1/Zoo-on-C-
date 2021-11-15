@@ -115,13 +115,8 @@ int main(int argc, const char * argv[]) {
             string anima;
             cout<<"Enter kind of animal: ";
             cin>>anima;
-            if(pnt->search_change(anima)){
-                cout<<endl;
-                pnt->search(anima);
-            }
-            else{
-                cout<<endl<<"No such object"<<endl<<endl;
-            }
+            cout<<endl;
+            pnt->search(anima);
         }
 //          Shows one object that you search with number
         else if(ex=="search_number"||ex=="sn"){
@@ -137,13 +132,8 @@ int main(int argc, const char * argv[]) {
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 }
             }
-            if(pnt->search_change(number)){
-                cout<<endl;
-                pnt->search(number);
-            }
-            else{
-                cout<<endl<<"No such object"<<endl<<endl;
-            }
+            cout<<endl;
+            pnt->search(number);
         }
 //        Copies another object
         else if(ex=="copy_animal"||ex=="ca"){
