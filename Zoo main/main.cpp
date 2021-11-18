@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
         else{
             cout<<"Wrong input"<<endl;
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cin.ignore(how<=0,'\n');
         }
     }
     cout<<"Sexes: ";
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
         else{
             cout<<"Wrong input"<<endl;
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cin.ignore(price<=0,'\n');
         }
     }
         
@@ -85,7 +85,7 @@ int main(int argc, const char * argv[]) {
                 else{
                     cout<<"Wrong input"<<endl;
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cin.ignore(how<=0,'\n');
                 }
             }
             cout<<"Sexes: ";
@@ -100,7 +100,7 @@ int main(int argc, const char * argv[]) {
                 else{
                     cout<<"Wrong input"<<endl;
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cin.ignore(price<=0,'\n');
                 }
             }
             cout<<endl;
@@ -129,7 +129,7 @@ int main(int argc, const char * argv[]) {
                 else{
                     cout<<"Wrong input"<<endl;
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cin.ignore(number<0,'\n');
                 }
             }
             cout<<endl;
@@ -160,7 +160,7 @@ int main(int argc, const char * argv[]) {
                 else{
                     cout<<"Wrong input"<<endl;
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cin.ignore(number<0,'\n');
                 }
             }
             if(pnt->search_change(number)){
@@ -230,7 +230,7 @@ int main(int argc, const char * argv[]) {
                 else{
                     cout<<"Wrong input"<<endl;
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                    cin.ignore(number<0,'\n');
                 }
             }
             pnt->search_delete(number,pnt);
@@ -250,7 +250,7 @@ int main(int argc, const char * argv[]) {
                     else{
                         cout<<"Wrong input"<<endl;
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                        cin.ignore(number<0,'\n');
                     }
                 }
                 if(pnt->search_change(number)){
@@ -264,7 +264,7 @@ int main(int argc, const char * argv[]) {
                         else{
                             cout<<"Wrong input"<<endl;
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                            cin.ignore(how<=0,'\n');
                         }
                     }
                     cout<<"Sexes: ";
@@ -279,7 +279,7 @@ int main(int argc, const char * argv[]) {
                         else{
                             cout<<"Wrong input"<<endl;
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                            cin.ignore(price<=0,'\n');
                         }
                     }
                     pnt->change(number,animal,sex,name,price,how,*p);
@@ -298,7 +298,7 @@ int main(int argc, const char * argv[]) {
                     else{
                         cout<<"Wrong input"<<endl;
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                        cin.ignore(number<0,'\n');
                     }
                 }
                 if(pnt->search_changes(number)){
@@ -314,7 +314,7 @@ int main(int argc, const char * argv[]) {
                         else{
                             cout<<"Wrong input"<<endl;
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                            cin.ignore(how<=0,'\n');
                         }
                     }
                     pnt->change(number,sex,name,how,*p);
@@ -333,7 +333,7 @@ int main(int argc, const char * argv[]) {
                     else{
                         cout<<"Wrong input"<<endl;
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                        cin.ignore(number<0,'\n');
                     }
                 }
                 if(pnt->search_change(number)){
@@ -345,7 +345,7 @@ int main(int argc, const char * argv[]) {
                         else{
                             cout<<"Wrong input"<<endl;
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                            cin.ignore(price<0,'\n');
                         }
                     }
                     pnt->change(number,price,*p);
