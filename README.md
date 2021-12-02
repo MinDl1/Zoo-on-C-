@@ -11,28 +11,10 @@ I think that the best choice for this is the list, but i want to work out differ
 
 Zoo on C++ can do:
 
-h - help - display this message
-
-crv - create_void - create void obj
-
-cr - create - create new object with your input values
-
-sh - show - show all objects
-
-sa - search_animal - search with kind of animal
-
-sn - search_number - search with number
-
-ca - copy_animal - copy with animal search
-
-cn - copy_number - copy with number search
-
-ch - change - change some values
-
-doc - document - take data from document
-
-dela - delete_animal - delete with kind of animal search
-
-deln - delete_number - delete with number search
-
-exit - exit
+new - new animal
+show - show all animals
+del - delete animal
+find - find animal
+copy - copy animal
+change - change animal
+doc - take data from document
