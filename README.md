@@ -1,4 +1,5 @@
 # Zoo on C++
+I think that the best choice for this is the list, but i want to work out different data structures
  
                                  ________   ________    ________ 
                                 /\_____  \ /\   __  \  /\   __  \ 
