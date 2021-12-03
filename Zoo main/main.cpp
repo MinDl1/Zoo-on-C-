@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <map>
+#include <tuple>
 #include <fstream>
 using namespace std;
 int main(int argc, const char * argv[]) {
