@@ -1,9 +1,10 @@
-﻿#include <iostream>
+#include <iostream>
 #include <list>
 #include <string>
 #include <fstream>
 using namespace std;
 
+//Class that store the data
 class zoo {
     string animal_type;
     string name;
@@ -17,15 +18,18 @@ public:
         this->price = price;
     }
     ~zoo() {}
+//Method that show object
     void show() {
         cout << "Animal:" << animal_type << "\n   Name:" << name << "\n   Sex:" << sex << "\n   Price:"<< price << endl;
     }
+//Method that copy data in variable
     void copy(string &animal_type,string &name,string &sex,float &price) {
         animal_type = this->animal_type;
         name = this->name;
         sex = this->sex;
         price = this->price;
     }
+//Method that writes to file
     void out_to_file(int i, ofstream &out_file) {
         out_file << i << ") " << animal_type << "\n" << name << "\n" << sex << "\n" << price << endl;
     }
@@ -33,6 +37,7 @@ public:
 
 int main()
 {
+//Logo
     cout << "  ________   ________    ________ " << endl;
     cout << " /\\_____  \\ /\\   __  \\  /\\   __  \\ " << endl;
     cout << " \\/____/  / \\ \\  \\/\\  \\ \\ \\  \\/\\  \\ " << endl;
@@ -41,16 +46,18 @@ int main()
     cout << "    /\\_______\\ \\ \\_______\\ \\ \\_______\\ " << endl;
     cout << "    \\/_______/  \\/_______/  \\/_______/  " << endl;
     int number = 0;
+//Variabilities that work with class
     string animal_type;
     string name;
     string sex;
     float price;
     list<zoo> zoo_list;
     string exit;
+//Command cycle
     while (exit!="exit") {
         cout << "Exit or command\nCommands:\nnew - new animal\nnew_in - new animal in the certain sequence\nshow - show all animals\ndel - delete animal\nfind - find animal\ncopy - copy animal\ndoc - take data from document\n::";
         cin >> exit;
-        if (exit=="new") {
+        if (exit=="new") { //Create new object at the end
             number++;
             cout << "Animal type:";
             cin >> animal_type;
@@ -58,7 +65,7 @@ int main()
             cin >> name;
             cout << "Sex:";
             cin >> sex;
-            while (true) {
+            while (true) { //only numbers
                 cout << "Price:";
                 if (cin>>price) {
                     break;
@@ -71,7 +78,7 @@ int main()
             }
             zoo_list.push_back(zoo(animal_type, name, sex, price));
         }
-        else if (exit == "new_in") {
+        else if (exit == "new_in") { //Create new object in the midle
             int num;
             while (true) {
                 cout << "Number after which the animal will be created:";
@@ -86,7 +93,7 @@ int main()
             }
             try{
                 if (num >= number) {
-                    throw "Wrong number\n";
+                    throw "Wrong number\n"; //if the entered number is bigger than the list throw error
                 }
                 cout << "Animal type:";
                 cin >> animal_type;
@@ -110,13 +117,13 @@ int main()
                 for (int i = 0; i < num; i++) {
                     it++;
                 }
-                zoo_list.emplace(it, zoo(animal_type, name, sex, price));
+                zoo_list.emplace(it, zoo(animal_type, name, sex, price)); //new object
             }
             catch (const char *a) {
-                cout << a;
+                cout << a; //show error
             }
         }
-        else if (exit=="show") {
+        else if (exit=="show") { //show all objects
             cout << endl;
             int i=1;
             for (auto it = zoo_list.begin(); it != zoo_list.cend();it++) {
@@ -125,9 +132,9 @@ int main()
                 i++;
                 cout << endl;
             }
-            cout << "Number of animals:" << zoo_list.size() << endl << endl;
+            cout << "Number of animals:" << zoo_list.size() << endl << endl; //show size of list
         }
-        else if (exit=="find") {
+        else if (exit=="find") { //shows selected object
             int num;
             while (true) {
                 cout << "Number of deleting animal:";
@@ -157,7 +164,7 @@ int main()
                 cout << "Wrong number\n";
             }
         }
-        else if (exit=="del") {
+        else if (exit=="del") { //deleting the object
             int num;
             while (true) {
                 cout << "Number of deleting animal:";
@@ -185,7 +192,7 @@ int main()
                 cout << a;
             }
         }
-        else if (exit=="copy") {
+        else if (exit=="copy") { //Copy the object and create new in the end
             int num;
             while (true) {
                 cout << "Enter the animal number to copy:";
@@ -214,7 +221,7 @@ int main()
                 cout << a;
             }
         }
-        else if (exit=="doc") {
+        else if (exit=="doc") { //copies objects from the file
             string file;
             cout << "File name: ";
             cin >> file;
@@ -244,7 +251,7 @@ int main()
                 cout << endl;
             }
         }
-        else if (exit == "exit") {}
+        else if (exit == "exit") {} 
         else {
             cout << "Error: Wrong command\n";
         }
